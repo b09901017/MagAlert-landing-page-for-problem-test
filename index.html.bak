@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>出國旅遊防扒神器 - 模組化防盜警示系統</title>
+    <title>模組化防盜錢包系統 - 問題驗證</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +52,7 @@
                     <span class="title-line">別讓扒手</span>
                     <span class="title-line gradient-text">毀了你的旅程</span>
                 </h1>
-                <p class="hero-subtitle">被偷的那幾秒,就能破壞整趟旅行的心情<br>出國在外,讓我們守護你的財物與證件安全</p>
+                <p class="hero-subtitle">即時感應，防患未然<br>告別失竊與遺失的煩惱</p>
                 <div class="hero-cta">
                     <a href="#problem" class="btn-primary pulse">
                         <span>常見困擾</span>
@@ -76,7 +76,7 @@
             <div class="section-header fade-in">
                 <span class="section-tag">常見困擾</span>
                 <h2 class="section-title">您是否有這些困擾？</h2>
-                <p class="section-subtitle">出國旅遊最怕遇到的三大困擾,您一定感同身受</p>
+                <p class="section-subtitle">每天都在擔心錢包的安全？您並不孤單</p>
             </div>
 
             <div class="problem-grid">
