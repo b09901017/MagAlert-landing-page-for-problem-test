@@ -827,6 +827,15 @@ section {
     margin: 0 auto;
 }
 
+/* Modal Slide Images - Responsive Sizing */
+.slide-image img {
+    max-width: 70%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    transition: all var(--transition-base);
+}
+
 .slide-header {
     display: flex;
     align-items: center;
@@ -857,7 +866,8 @@ section {
 }
 
 .slide-image {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-sm);
 }
 
 .slide-image .image-placeholder {
@@ -1514,5 +1524,10 @@ select:focus {
     .modal-counter {
         font-size: var(--font-size-xs);
         padding: 4px 12px;
+    }
+
+    /* Modal images on mobile - make them larger */
+    .slide-image img {
+        max-width: 90%;
     }
 }
