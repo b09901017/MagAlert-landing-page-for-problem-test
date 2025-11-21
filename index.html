@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>JIMO-MagAlert - Choose Your Technology</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23667eea' /%3E%3Cpath fill='%23ffffff' d='M12 1.5a1.5 1.5 0 0 0-1.5 1.5v3h3V3A1.5 1.5 0 0 0 12 1.5z' /%3E%3Crect x='8' y='7' width='8' height='12' rx='1.5' fill='%23ffffff'/%3E%3Cpath fill='%23667eea' d='M12 16a2 2 0 1 0 0-4 2 2 0 0 0 0 4z' /%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' d='M16 8c2.5 0 4 1.5 4 4M4 12c0-2.5 1.5-4 4-4' /%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -12,72 +19,458 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
+            overflow-x: hidden;
         }
 
-        .loader-container {
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 87, 108, 0.8) 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.8) 0%, transparent 70%);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tech-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            animation: fadeInUp 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.35);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .tech-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .tech-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-subtitle {
+            font-size: 1rem;
+            color: #4a5568;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-features li {
+            color: #4a5568;
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .tech-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -5px rgba(102, 126, 234, 0.6);
+        }
+
+        .comparison {
+            margin-top: 60px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .comparison-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
             text-align: center;
         }
 
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 20px;
+        .comparison-header {
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .comparison-item {
+            padding: 15px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 0.9rem;
         }
 
-        .message {
-            font-size: 18px;
-            opacity: 0.9;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .tech-selector {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .tech-card {
+                padding: 30px;
+            }
+
+            .comparison-table {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .comparison-header {
+                border-bottom: none;
+                padding-bottom: 10px;
+            }
         }
     </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6CN7Y4NKLY"></script>
     <script>
-        // Immediate language detection and redirect
-        (function() {
-            // Get browser language
-            const userLang = navigator.language || navigator.userLanguage;
-
-            // Check if it's Chinese (Traditional or Simplified)
-            const isChinese = userLang.toLowerCase().startsWith('zh');
-
-            // Redirect based on language
-            if (isChinese) {
-                window.location.replace('./zh/');
-            } else {
-                window.location.replace('./en/');
-            }
-        })();
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6CN7Y4NKLY');
     </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M7BMGC9P');</script>
 </head>
 <body>
-    <div class="loader-container">
-        <div class="loader"></div>
-        <p class="message">Redirecting...</p>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7BMGC9P"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="logo">JIMO-MagAlert</h1>
+            <p class="subtitle" id="subtitle">Choose Your Technology Version</p>
+            <p class="description" id="description">We're testing two different technologies for our wallet security system. Help us decide which one works best!</p>
+        </div>
+
+        <div class="tech-selector">
+            <!-- MAG Version -->
+            <div class="tech-card" onclick="selectTech('MAG')">
+                <div class="tech-badge" id="mag-badge">Version A</div>
+                <div class="tech-icon">🧲</div>
+                <h2 class="tech-title" id="mag-title">Magnetic Sensing</h2>
+                <p class="tech-subtitle" id="mag-subtitle">Ultra-fast response, no app needed</p>
+                <ul class="tech-features">
+                    <li id="mag-f1">< 0.5 second response time</li>
+                    <li id="mag-f2">Clip & module system</li>
+                    <li id="mag-f3">6 months battery life</li>
+                    <li id="mag-f4">No smartphone required</li>
+                    <li id="mag-f5">Simple & reliable</li>
+                </ul>
+                <a href="./MAG/" class="tech-button" id="mag-btn">
+                    <span>View Details</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- BT Version -->
+            <div class="tech-card" onclick="selectTech('BT')">
+                <div class="tech-badge" id="bt-badge">Version B</div>
+                <div class="tech-icon">📡</div>
+                <h2 class="tech-title" id="bt-title">Bluetooth + mmWave</h2>
+                <p class="tech-subtitle" id="bt-subtitle">Smart tracking with app control</p>
+                <ul class="tech-features">
+                    <li id="bt-f1">Up to 50 meters range</li>
+                    <li id="bt-f2">GPS positioning on map</li>
+                    <li id="bt-f3">3-6 months battery life</li>
+                    <li id="bt-f4">Smartphone app required</li>
+                    <li id="bt-f5">Advanced features & tracking</li>
+                </ul>
+                <a href="./BT/" class="tech-button" id="bt-btn">
+                    <span>View Details</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <h3 class="comparison-title" id="comparison-title">Quick Comparison</h3>
+            <div class="comparison-table">
+                <div>
+                    <div class="comparison-header" id="comp-feature">Feature</div>
+                    <div class="comparison-item" id="comp-response">Response Time</div>
+                    <div class="comparison-item" id="comp-range">Range</div>
+                    <div class="comparison-item" id="comp-tracking">Tracking</div>
+                    <div class="comparison-item" id="comp-battery">Battery</div>
+                    <div class="comparison-item" id="comp-app">App Needed</div>
+                </div>
+                <div>
+                    <div class="comparison-header">🧲 Magnetic</div>
+                    <div class="comparison-item">< 0.5s</div>
+                    <div class="comparison-item" id="comp-mag-range">Close contact</div>
+                    <div class="comparison-item">✗</div>
+                    <div class="comparison-item">6 months</div>
+                    <div class="comparison-item">✗</div>
+                </div>
+                <div>
+                    <div class="comparison-header">📡 Bluetooth</div>
+                    <div class="comparison-item">< 1s</div>
+                    <div class="comparison-item">30-50m</div>
+                    <div class="comparison-item">✓</div>
+                    <div class="comparison-item">3-6 months</div>
+                    <div class="comparison-item">✓</div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Fallback for users with JavaScript disabled -->
-    <noscript>
-        <div style="text-align: center; padding: 20px;">
-            <h1>Please enable JavaScript</h1>
-            <p>Or choose your language:</p>
-            <p>
-                <a href="./zh/" style="color: white; margin: 0 10px;">中文</a> |
-                <a href="./en/" style="color: white; margin: 0 10px;">English</a>
-            </p>
-        </div>
-    </noscript>
+    <script>
+        // Language detection and content switching
+        (function() {
+            const userLang = navigator.language || navigator.userLanguage;
+            const isChinese = userLang.toLowerCase().startsWith('zh');
+
+            if (isChinese) {
+                // Chinese content
+                document.getElementById('subtitle').textContent = '選擇您的技術版本';
+                document.getElementById('description').textContent = '我們正在測試兩種不同的錢包安全系統技術。幫助我們決定哪一種效果最好！';
+
+                document.getElementById('mag-badge').textContent = '版本 A';
+                document.getElementById('mag-title').textContent = '磁力感應';
+                document.getElementById('mag-subtitle').textContent = '超快反應，無需 App';
+                document.getElementById('mag-f1').textContent = '< 0.5 秒反應時間';
+                document.getElementById('mag-f2').textContent = '別針與模組系統';
+                document.getElementById('mag-f3').textContent = '6 個月續航';
+                document.getElementById('mag-f4').textContent = '無需智慧手機';
+                document.getElementById('mag-f5').textContent = '簡單可靠';
+                document.getElementById('mag-btn').innerHTML = '<span>查看詳情</span><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+                document.getElementById('bt-badge').textContent = '版本 B';
+                document.getElementById('bt-title').textContent = '藍芽 + 毫米波';
+                document.getElementById('bt-subtitle').textContent = '智能追蹤，App 控制';
+                document.getElementById('bt-f1').textContent = '最遠 50 公尺範圍';
+                document.getElementById('bt-f2').textContent = '地圖 GPS 定位';
+                document.getElementById('bt-f3').textContent = '3-6 個月續航';
+                document.getElementById('bt-f4').textContent = '需要智慧手機 App';
+                document.getElementById('bt-f5').textContent = '進階功能與追蹤';
+                document.getElementById('bt-btn').innerHTML = '<span>查看詳情</span><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+                document.getElementById('comparison-title').textContent = '快速比較';
+                document.getElementById('comp-feature').textContent = '功能';
+                document.getElementById('comp-response').textContent = '反應時間';
+                document.getElementById('comp-range').textContent = '範圍';
+                document.getElementById('comp-tracking').textContent = '追蹤';
+                document.getElementById('comp-battery').textContent = '電池';
+                document.getElementById('comp-app').textContent = '需要 App';
+                document.getElementById('comp-mag-range').textContent = '近距離接觸';
+            }
+        })();
+
+        function selectTech(tech) {
+            // Track selection
+            if (typeof gtag === 'function') {
+                gtag('event', 'tech_selection', {
+                    'event_category': 'Technology Choice',
+                    'event_label': tech,
+                    'value': 1
+                });
+            }
+        }
+    </script>
 </body>
 </html>

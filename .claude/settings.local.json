@@ -4,7 +4,8 @@
       "Bash(xxd:*)",
       "Bash(powershell -Command:*)",
       "Bash(python:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
