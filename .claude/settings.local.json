@@ -3,7 +3,8 @@
     "allow": [
       "Bash(xxd:*)",
       "Bash(powershell -Command:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []
